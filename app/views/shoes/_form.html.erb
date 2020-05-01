@@ -1,0 +1,49 @@
+<%= form_with(model: shoe, local: true) do |form| %>
+  <% if shoe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shoe.errors.count, "error") %> prohibited this shoe from being saved:</h2>
+
+      <ul>
+      <% shoe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :brand %>
+    <%= form.text_field :brand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :model %>
+    <%= form.text_field :model %>
+  </div>
+
+  <% @conditions.each do |option| %>
+    <div>
+    <%= form.radio_button :condition, option %>
+    <%= form.label "condition_#{option}".to_sym, option%>
+    <div>
+    <% end %>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+     <%= form.label :location_id %>  
+    <%= form.select(:location_id, @locations.map{|l| [l.state, l.id]}) %> 
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
