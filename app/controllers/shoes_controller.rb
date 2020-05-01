@@ -1,4 +1,7 @@
 class ShoesController < ApplicationController
+  before_action :authenticate_user!
+  
+  before_action :set_user_shoes, only: [:edit, :update, :destroy]
   before_action :set_vars, only: [:new, :create, :edit, :update]
   before_action :set_shoe, only: [:show, :edit, :update, :destroy]
 
@@ -64,6 +67,14 @@ class ShoesController < ApplicationController
   end
 
   private
+  def set_user_shoes
+    id = params[:id]
+    @shoe = current_user.shoes.find_by_id(id)
+
+    if @shoe == nil
+        redirect_to shoes_path
+    end
+end
   def set_vars
     @conditions = Shoe.conditions.keys
     @locations = Location.all
