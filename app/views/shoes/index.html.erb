@@ -1,43 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-
-<div style="display:wrap; flex-wrap]:wrap">
-<% @shoes.each do |shoe| %>
-<div class="card" style="width:200px">
-  <div class="card-image" style="width: 150px">
+<h1>Shoes</h1>
+<div class="container" style="display:flex;flex-wrap:wrap ">
+  <% @shoes.each do |shoe| %>
+  <div class="card" style="
+  border-radius: 20px;
+    box-shadow: 2px 2px 7px black;
+    width: 300px;
+    position: relative;
+    margin: 10px;">
+    <div class="card-image" style="width: 300px;border-radius: 20px 20px 0px 0px">
     <figure class="image is-4by3">
       <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" >
     </figure>
   </div>
-  <div class="card-content">
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-        </figure>
-      </div>
-      <div class="media-content">
-        <p class="title is-4"><%= shoe.brand %></p>
-        <p class="subtitle is-6"><%= shoe.model %></p>
-      </div>
+    <div class="card-content" style="height:300px">
+    <ul>
+     <li> <%= shoe.brand %></li>
+      <li><%= shoe.user.email %></li>
+     <li> <%= shoe.model %></li>
+     <li> <%= shoe.condition %></li>
+     <li> <%= shoe.price %></li>
+      <li><%= shoe.description %></li>
+      <li><%= shoe.location.state %></li>
+      </ul>
     </div>
-
-    <div class="content">
-      <%= shoe.description %> <br>
-      $<%= shoe.price %> <br>
-      <%= shoe.condition %> 
-      <br>
-      <%= shoe.location.state %>
+    <div class="card-footer" style="height:50px">
+      <%= link_to 'Show', shoe, class:"card-footer-item" %>
+      <% if user_signed_in? %>
+      <% if shoe.user == current_user %>
+      <%= link_to 'Edit', edit_shoe_path(shoe), class:"card-footer-item"  %>
+      <%= link_to 'Destroy', shoe, method: :delete, data: { confirm: 'Are you sure?' }, class:"card-footer-item"  %>
+      <% end %>
+      <% end %>
     </div>
-     <div><%= link_to 'Show', shoe %></td>
-        <% if current_user == shoe.user%>
-        <td><%= link_to 'Edit', edit_shoe_path(shoe) %></td>
-        <td><%= link_to 'Destroy', shoe, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </div>
-        <%end%>
   </div>
-</div>
-<% end %>
-</div>
+  <% end %>
+
+  <br>
 
 
+</div>
