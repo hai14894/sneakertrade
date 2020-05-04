@@ -4,4 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :shoes
+  has_one_attached :picture
+  def user_picture_attach 
+    picture.attached? ? picture : "avatar.jpeg"
+  end
 end
