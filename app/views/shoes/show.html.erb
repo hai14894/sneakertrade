@@ -29,6 +29,15 @@
   <strong>Location:</strong>
   <%= @shoe.location.state %>
 </p>
+<p>
+ <strong>Pictures:</strong>
+ <%@shoe.picture.each do |s|%>
+ <%= image_tag  s %>
+
+ <%#for picture in @shoe.picture do%>
+ <%#= image_tag  picture %>
+ <%end%>
+</p>
 <%if current_user == @shoe.user%>
 <%= link_to 'Destroy', @shoe, method: :delete, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Edit', edit_shoe_path(@shoe) %> |

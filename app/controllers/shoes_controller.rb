@@ -87,6 +87,6 @@ end
 
     # Only allow a list of trusted parameters through.
     def shoe_params
-      params.require(:shoe).permit(:brand, :model, :condition, :price, :description, :location_id, :picture)
+      params.require(:shoe).permit(:brand, :model, :condition, :price, :description, :location_id, picture: [])
     end
 end
