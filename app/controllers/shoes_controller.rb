@@ -8,7 +8,9 @@ class ShoesController < ApplicationController
   # GET /shoes
   # GET /shoes.json
   def index
-    @shoes = Shoe.all
+    # @shoes = Shoe.all
+    @q =  Shoe.ransack(params[:q])
+    @shoes = @q.result(distinct: true)
   end
 
   # GET /shoes/1

@@ -2,6 +2,17 @@
 
 <h1>Shoes</h1>
 <%= link_to  "New_shoe", new_shoe_path %>
+
+<%= search_form_for @q do |f| %>
+
+  # Search if the name field contains...
+  <%= f.label "Find shoe:" %>
+  <%= f.search_field :brand_or_model_or_description_cont %>
+
+
+  <%= f.submit %>
+<% end %>
+
 <div class="container">
   <% @shoes.each do |shoe| %>
   <div class="card" style="
